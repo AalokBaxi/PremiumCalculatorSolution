@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>PremiumCalculator.Api</AssemblyName>
+    <RootNamespace>PremiumCalculator.Api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PremiumCalculatorData\PremiumCalculatorData.csproj" />
+    <ProjectReference Include="..\PremiumCalculatorService\PremiumCalculatorService.csproj" />
+  </ItemGroup>
+
+</Project>
