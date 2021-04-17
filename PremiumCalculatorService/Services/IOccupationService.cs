@@ -1,11 +1,7 @@
-﻿using PremiumCalculatorCore.Models;
-using System;
+﻿using PremiumCalculator.Core.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PremiumCalculator.Service
+namespace PremiumCalculator.Service.Services
 {
     public interface IOccupationService
     {

@@ -1,33 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-
-namespace PremiumCalculator.Data.Models
+﻿namespace PremiumCalculator.Core.Models
 {
     public class CalculatorParameter
     {
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide your name")]
-        //[StringLength(50, ErrorMessage = "Please provide valid name")]
+        /// <summary>
+        /// Your name
+        /// </summary>
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please provide your age")]
-        //[MinLength(1, ErrorMessage = "Please provide valid age")]
-        //[MaxLength(200, ErrorMessage = "Please provide valid age")]
+        /// <summary>
+        /// Your age
+        /// </summary>
         public int Age { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please provide your date of birth in dd/MM/yyyy format")]
-        //[StringLength(10, ErrorMessage = "Please provide valid date of birth in dd/MM/yyyy format")]
+        /// <summary>
+        /// Your date of birth
+        /// </summary>
         public string DOB { get; set; }
 
-        [Required(ErrorMessage = "Please provide your occupation")]        
-        public OccupationName Occupation { get; set; }
+        /// <summary>
+        /// Occupation ID
+        /// </summary>
+        public int OccupationID { get; set; }
 
-        [Required(ErrorMessage = "Please provide sum assured required")]
-        //[MinLength(1, ErrorMessage = "Please provide valid sum assured required")]
-        //[MaxLength(50000000, ErrorMessage = "Please provide valid sum assured required")]
+        /// <summary>
+        /// Sum assured required
+        /// </summary>
         public decimal DeathSumInsured { get; set; }
     }
 }

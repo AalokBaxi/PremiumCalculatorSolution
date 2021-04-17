@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PremiumCalculator.Api</name>
+    </assembly>
+    <members>
+        <member name="T:PremiumCalculator.Api.Controllers.CalculatorController">
+            <summary>
+            Provide support for premium calculation
+            </summary>
+        </member>
+        <member name="M:PremiumCalculator.Api.Controllers.CalculatorController.#ctor(PremiumCalculator.Service.Services.ICalculatorService)">
+            <summary>
+            Constructor for setting dependencies
+            </summary>
+            <param name="calculatorService"></param>
+        </member>
+        <member name="M:PremiumCalculator.Api.Controllers.CalculatorController.Calculate(PremiumCalculator.Core.Models.CalculatorParameter)">
+            <summary>
+            Calculate monthly premium
+            </summary>
+            <param name="calculatorParameter">Input object of type CalculatorParameter for premium calculation</param>
+            <returns>Monthly premium</returns>
+        </member>
+        <member name="T:PremiumCalculator.Api.Controllers.OccupationController">
+            <summary>
+            Provide support for getting supported Occupations and their corresponding ratings for premium calculation.
+            </summary>
+        </member>
+        <member name="M:PremiumCalculator.Api.Controllers.OccupationController.#ctor(PremiumCalculator.Service.Services.IOccupationService)">
+            <summary>
+            Constructor for setting dependencies
+            </summary>
+            <param name="occupationService"></param>
+        </member>
+        <member name="M:PremiumCalculator.Api.Controllers.OccupationController.GetOccupations">
+            <summary>
+            Get all occupations with rating factors for premium calculation
+            </summary>
+            <returns>Occupations with rating factors</returns>
+        </member>
+        <member name="M:PremiumCalculator.Api.Controllers.OccupationController.GetOccupation(System.Int32)">
+            <summary>
+            Get occupation with rating factors by ID for premium calculation
+            </summary>
+            <param name="id">Occupation ID</param>
+            <returns>Occupation with rating factors</returns>
+        </member>
+        <member name="T:PremiumCalculator.Api.Startup">
+            <summary>
+            Startup class with app level configurations
+            </summary>
+        </member>
+        <member name="M:PremiumCalculator.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup Constructor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:PremiumCalculator.Api.Startup.Configuration">
+            <summary>
+            Configuration object of type IConfiguration
+            </summary>
+        </member>
+        <member name="M:PremiumCalculator.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+        </member>
+        <member name="M:PremiumCalculator.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.         
+            </summary>
+        </member>
+    </members>
+</doc>

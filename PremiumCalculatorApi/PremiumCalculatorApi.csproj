@@ -6,12 +6,15 @@
     <RootNamespace>PremiumCalculator.Api</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\work\MyPremiumCalculatorDemo\PremiumCalculatorSolution\PremiumCalculatorApi\PremiumCalculator.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PremiumCalculatorData\PremiumCalculatorData.csproj" />
     <ProjectReference Include="..\PremiumCalculatorService\PremiumCalculatorService.csproj" />
   </ItemGroup>
 

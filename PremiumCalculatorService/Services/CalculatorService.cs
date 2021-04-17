@@ -1,24 +1,36 @@
-﻿using PremiumCalculator.Data.Models;
+﻿using PremiumCalculator.Core.Common;
+using PremiumCalculator.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PremiumCalculator.Service.Common;
 
-namespace PremiumCalculator.Service
+namespace PremiumCalculator.Service.Services
 {
     public class CalculatorService : ICalculatorService
     {
-        public decimal Calculate(CalculatorParameter calculatorParameter)
+        private readonly IOccupationService _occupationService;
+        public CalculatorService(IOccupationService occupationService)
         {
-            decimal premium = 0;
+            _occupationService = occupationService;
+        }
+        public decimal? CalculateMonthlyPremium(CalculatorParameter calculatorParameter)
+        {
+            decimal? premium = null;
 
             if (calculatorParameter == null)
             {
                 throw new Exception(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
             }
 
-            premium = Math.Round(calculatorParameter.DeathSumInsured * 1 * calculatorParameter.Age / 1000 * 12, 4);
+            Occupation occupation = _occupationService.GetOccupationByID(calculatorParameter.OccupationID);
+
+            if (occupation != null && occupation.RatingDetail != null)
+            {
+                premium = Math.Round(calculatorParameter.DeathSumInsured * occupation.RatingDetail.Factor * calculatorParameter.Age / 1000, 4);
+            }
+            else
+            {
+                // Log -> Constants.OCCUPATION_NOT_FOUND;
+                // Log -> Constants.RATING_NULL_ERROR;
+            }
 
             return premium;
         }

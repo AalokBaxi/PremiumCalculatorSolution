@@ -1,13 +1,9 @@
-﻿using PremiumCalculator.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using PremiumCalculator.Core.Models;
 
-namespace PremiumCalculator.Service
+namespace PremiumCalculator.Service.Services
 {
     public interface ICalculatorService
     {
-        decimal Calculate(CalculatorParameter calculatorParameter);
+        decimal? CalculateMonthlyPremium(CalculatorParameter calculatorParameter);
     }
 }

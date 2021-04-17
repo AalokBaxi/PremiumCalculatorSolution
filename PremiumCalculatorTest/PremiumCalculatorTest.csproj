@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PremiumCalculatorData\PremiumCalculatorData.csproj" />
     <ProjectReference Include="..\PremiumCalculatorService\PremiumCalculatorService.csproj" />
   </ItemGroup>
 

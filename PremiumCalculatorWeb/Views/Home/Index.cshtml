@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Premium calculator";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calculate premium on the fly</h1>
+    <table border="1" width="70%">
+        <tr>
+            <td><label for="txtName">Name</label></td>
+            <td><input class="form-control" type="text" id="txtName" placeholder="Provide your name" required /></td>
+        </tr>
+        <tr>
+            <td><label for="txtAge">Age</label></td>
+            <td><input class="form-control triggerCalculation" type="number" id="txtAge" min="18" max="100" placeholder="Provide your age" required /></td>
+        </tr>
+        <tr>
+            <td><label for="txtDOB">Date of birth</label></td>
+            <td><input class="form-control" type="text" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required /></td>
+        </tr>
+        <tr>
+            <td><label for="txtDeathSumInsured">Death - Sum Insured</label></td>
+            <td><input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" placeholder="Provide death sum insured" required /></td>
+        </tr>
+        <tr>
+            <td><label for="ddlOccupation">Occupation</label></td>
+            <td><select class="form-control triggerCalculation" id="ddlOccupation"></select></td>
+        </tr>
+        <tr>
+            <td>Monthly premium</td>
+            <td><span id="txtPremium">-</span></td>
+        </tr>
+    </table>
+</div>
