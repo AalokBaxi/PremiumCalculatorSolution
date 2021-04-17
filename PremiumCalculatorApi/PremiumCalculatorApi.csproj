@@ -4,9 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>PremiumCalculator.Api</AssemblyName>
     <RootNamespace>PremiumCalculator.Api</RootNamespace>
+    <UserSecretsId>0abe96a3-e617-4f80-b538-ec2d13f1cfc0</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\work\MyPremiumCalculatorDemo\PremiumCalculatorSolution\PremiumCalculatorApi\PremiumCalculator.Api.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>D:\work\MyPremiumCalculatorDemo\PremiumCalculatorSolution\PremiumCalculatorApi\PremiumCalculator.Api.xml</DocumentationFile>
   </PropertyGroup>
 
