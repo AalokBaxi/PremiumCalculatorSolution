@@ -4,7 +4,8 @@
 // Write your JavaScript code.
 $(document).ready(function () {
 
-    var _apiPath = "http://localhost:1777/api";    
+    // var _apiPath = "http://localhost:1777/api";    
+    var _apiPath = "https://mypremiumcalculatorapi.azurewebsites.net/api";
 
     // Load occupations
     $.ajax({
@@ -22,7 +23,7 @@ $(document).ready(function () {
     // Calculate the premium on age/occupation/deathSumInsured change
     $(".triggerCalculation").change(function () {
         var age = $("#txtAge").val();
-        var occupationID = $("#ddlOccupation").find(":selected").data("ratingdetail");
+        var occupationID = $("#ddlOccupation").find(":selected").val();
         var deathSumInsured = $("#txtDeathSumInsured").val();
 
         if (age && occupationID && deathSumInsured) {
