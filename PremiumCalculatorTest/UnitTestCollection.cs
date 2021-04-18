@@ -30,7 +30,7 @@ namespace PremiumCalculator.Test
 
             var actualResults =_calculatorService.CalculateMonthlyPremium(new CalculatorParameter { DeathSumInsured = 10000, OccupationID = 1, Age = 38 });
 
-            Assert.AreEqual(6840m, actualResults);
+            Assert.AreEqual(570m, actualResults);
         }
     }
 }
