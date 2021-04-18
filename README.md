@@ -27,16 +27,17 @@ Url: https://mypremiumcalculatorweb.azurewebsites.net/
 
 
 *****Run application on local machine*****
+
 PremiumCalculatorSolutions - Collection of projects
 
-PremiumCalculatorApi - API project using ASP.NET API Core 5.0
+ PremiumCalculatorApi - API project using ASP.NET API Core 5.0
 
-PremiumCalculatorCore - Business object which are shared between all projects
+ PremiumCalculatorCore - Business object which are shared between all projects
 
-PremiumCalculatorService - Service layer
+ PremiumCalculatorService - Service layer
 
-PremiumCalculatorWeb - UI project using ASP.NET MVC Core 5.0
+ PremiumCalculatorWeb - UI project using ASP.NET MVC Core 5.0
 
-PremiumCalculatorTest - Test methods using Moq framework
+ PremiumCalculatorTest - Test methods using Moq framework
    
 To run the solution on local, set multiple project(PremiumCalculatorApi and PremiumCalculatorWeb) as startup.
