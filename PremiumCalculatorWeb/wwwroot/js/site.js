@@ -36,7 +36,7 @@ $(document).ready(function () {
             name: $("#txtName").val(),
             age: $("#txtAge").val(),
             dbo: $("#txtDOB").val(),
-            occupationID: $("#ddlOccupation").find(":selected").data("ratingdetail"),
+            occupationID: $("#ddlOccupation").find(":selected").val(),
             deathSumInsured: $("#txtDeathSumInsured").val()
         };
 
