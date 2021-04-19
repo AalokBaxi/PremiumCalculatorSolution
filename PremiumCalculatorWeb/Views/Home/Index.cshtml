@@ -4,37 +4,44 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Insurance Premium Calculator Form</h1>
-    <form id="contact-form">
-        <table border="1" width="70%">
-            <tr>
-                <td><label for="txtName">Name</label></td>
-                <td><input class="form-control" type="text" id="txtName" placeholder="Provide your name" required /></td>
-            </tr>
-            <tr>
-                <td><label for="txtDOB">Date of birth</label></td>
-                <td><input class="form-control" type="date" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required /></td>
-            </tr>
-            <tr>
-                <td><label for="txtAge">Age</label></td>
-                <td><input class="form-control triggerCalculation" readonly type="number" id="txtAge" min="1" max="150" placeholder="Provide your age" required /></td>
-            </tr>
-            <tr>
-                <td><label for="txtDeathSumInsured">Death - Sum Insured</label></td>
-                <td><input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" min="1" placeholder="Provide death sum insured" required /></td>
-            </tr>
-            <tr>
-                <td><label for="ddlOccupation">Occupation</label></td>
-                <td><select class="form-control triggerCalculation" id="ddlOccupation"></select></td>
-            </tr>
-            <tr>
-                <td>Monthly premium</td>
-                <td><span id="txtPremium">-</span></td>
-            </tr>
-        </table>
-    </form>
+    <div class="text-left">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="txtName">Name</label>
+                    <input class="form-control" type="text" id="txtName" placeholder="Provide your name" required />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="txtDOB">Date of birth</label>
+                    <input class="form-control" type="date" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="txtAge">Age</label>
+                    <fieldset disabled><input class="form-control triggerCalculation" type="number" id="txtAge" min="1" max="150" placeholder="Provide your age" required /></fieldset>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="txtDeathSumInsured">Death - Sum Insured</label>
+                    <input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" min="1" placeholder="Provide death sum insured" required />
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="ddlOccupation">Occupation</label>
+                    <select class="form-control triggerCalculation" id="ddlOccupation"></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6 h3">
+                    <label for="txtPremium">Premium</label>
+                    <span id="txtPremium">-</span><small class="text-muted"> / mo</small>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
-@section Scripts{ 
+@section Scripts{
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml"); }
 }
