@@ -68,10 +68,10 @@ $(document).ready(function () {
             contentType: "application/json",
             data: JSON.stringify(calculatorParamaters),
             success: function (data) {                
-                $("#txtPremium").html("$" + data);
+                $("#txtPremium").html("$" + data).append("<small class='text - muted'> / mo</small>");
             },
             error: function () {
-                $("#txtPremium").html("Some error, please try again later.");
+                $("#txtPremium").html(": Some error, please try again later.");
             }
         });
     };

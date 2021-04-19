@@ -30,6 +30,12 @@ namespace PremiumCalculator.Service.Services
                 throw new Exception(Constants.CALCULATOR_PARAMETER_AGE_NULL_ERROR);
             }
 
+            if (calculatorParameter.Age > 150)
+            {
+                throw new Exception(Constants.CALCULATOR_PARAMETER_AGE_RANGE_ERROR);
+            }
+
+
             Occupation occupation = _occupationService.GetOccupationByID(calculatorParameter.OccupationID);
 
             if (occupation != null && occupation.RatingDetail != null)
