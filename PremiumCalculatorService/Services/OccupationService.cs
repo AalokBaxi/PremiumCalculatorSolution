@@ -41,16 +41,28 @@ namespace PremiumCalculator.Service.Services
             return occupations;
         }
         public Occupation GetOccupationByID(int id)
-        {           
+        {
             Occupation occupation = null;
+
+            if(id <= 0)
+            {
+                // Log -> Constants.OCCUPATION_NULL_ERROR;               
+                throw new Exception(Constants.OCCUPATION_ID_NULL_ERROR);
+            }
 
             // ToDo:: _occupations will be fectched from datasource using EF
             occupation = _occupations.FirstOrDefault(o => o.ID == id);
 
             // If Occupation or RatingDetails is null then
-            if (occupation == null || occupation.RatingDetail == null)
+            if (occupation == null)
             {
-                // Log -> Constants.OCCUPATION_NULL_ERROR;               
+                // Log -> Constants.OCCUPATION_NOT_FOUND;               
+                throw new Exception(Constants.OCCUPATION_NOT_FOUND);
+            }
+            else if (occupation.RatingDetail == null)
+            {
+                // Log -> Constants.RATING_NOT_FOUND;
+                throw new Exception(Constants.RATING_NOT_FOUND);
             }
             else
             {
@@ -61,6 +73,6 @@ namespace PremiumCalculator.Service.Services
             }
 
             return occupation;
-        }              
+        }          
     }
 }

@@ -4,8 +4,8 @@
 // Write your JavaScript code.
 $(document).ready(function () {
 
-    // var _apiPath = "http://localhost:1777/api";    
-    var _apiPath = "https://mypremiumcalculatorapi.azurewebsites.net/api";   
+    var _apiPath = "http://localhost:1777/api";    
+    // var _apiPath = "https://mypremiumcalculatorapi.azurewebsites.net/api";   
 
     // Load occupations
     $.ajax({

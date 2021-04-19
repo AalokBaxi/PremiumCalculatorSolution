@@ -20,6 +20,16 @@ namespace PremiumCalculator.Service.Services
                 throw new Exception(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
             }
 
+            if (calculatorParameter.DeathSumInsured <=0)
+            {
+                throw new Exception(Constants.CALCULATOR_PARAMETER_DEATH_SUM_INSURED_NULL_ERROR);
+            }
+
+            if (calculatorParameter.Age <=0)
+            {
+                throw new Exception(Constants.CALCULATOR_PARAMETER_AGE_NULL_ERROR);
+            }
+
             Occupation occupation = _occupationService.GetOccupationByID(calculatorParameter.OccupationID);
 
             if (occupation != null && occupation.RatingDetail != null)

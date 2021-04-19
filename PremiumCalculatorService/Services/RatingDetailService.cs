@@ -31,9 +31,16 @@ namespace PremiumCalculator.Service.Services
 
         public RatingDetail GetRatingDetailByID(int id)
         {
+            if (id <= 0)
+            {
+                // Log -> Constants.RATING_NULL_ERROR;               
+                throw new Exception(Constants.RATING_ID_NULL_ERROR);
+            }
+
             if (ratingDetails == null)
             {
-                throw new Exception(Constants.RATING_NULL_ERROR);
+                // Log -> Constants.RATING_NOT_FOUND;   
+                throw new Exception(Constants.RATING_NOT_FOUND);
             }
 
             return ratingDetails.FirstOrDefault(o => o.ID == id);
