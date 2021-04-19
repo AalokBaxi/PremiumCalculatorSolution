@@ -5,7 +5,7 @@
 $(document).ready(function () {
 
     // var _apiPath = "http://localhost:1777/api";    
-    var _apiPath = "https://mypremiumcalculatorapi.azurewebsites.net/api";
+    var _apiPath = "https://mypremiumcalculatorapi.azurewebsites.net/api";   
 
     // Load occupations
     $.ajax({
@@ -20,15 +20,35 @@ $(document).ready(function () {
         }
     });
 
+    $("#txtDOB").change(function () {
+        var dob = new Date($(this).val());
+        var today = new Date();
+
+        var age = today.getFullYear() - dob.getFullYear();
+        var monthDifference = today.getMonth() - dob.getMonth();
+        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dob.getDate())) {
+            // If dob month is greater than current month then return --age
+            // or If dob is greater than current date then return -1            
+            age--;
+        }
+
+        // Set age and trigger change event
+        $("#txtAge").val(age).trigger("change");
+
+    });
+
     // Calculate the premium on age/occupation/deathSumInsured change
     $(".triggerCalculation").change(function () {
         var age = $("#txtAge").val();
         var occupationID = $("#ddlOccupation").find(":selected").val();
         var deathSumInsured = $("#txtDeathSumInsured").val();
-
-        if (age && occupationID && deathSumInsured) {
+        
+        if (age && age > 0 && occupationID && occupationID > 0 && deathSumInsured && deathSumInsured > 0) {
             calculatePremium();
         }
+        else {
+            $("#txtPremium").html("-");
+        }        
     });
 
     // Calculate actual premium
@@ -47,7 +67,7 @@ $(document).ready(function () {
             accepts: "application/json",
             contentType: "application/json",
             data: JSON.stringify(calculatorParamaters),
-            success: function (data) {
+            success: function (data) {                
                 $("#txtPremium").html("$" + data);
             },
             error: function () {

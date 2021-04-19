@@ -1,34 +1,40 @@
 ﻿
 @{
-    ViewData["Title"] = "Premium calculator";
+    ViewData["Title"] = "Insurance Premium Calculator";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Calculate premium on the fly</h1>
-    <table border="1" width="70%">
-        <tr>
-            <td><label for="txtName">Name</label></td>
-            <td><input class="form-control" type="text" id="txtName" placeholder="Provide your name" required /></td>
-        </tr>
-        <tr>
-            <td><label for="txtAge">Age</label></td>
-            <td><input class="form-control triggerCalculation" type="number" id="txtAge" min="18" max="100" placeholder="Provide your age" required /></td>
-        </tr>
-        <tr>
-            <td><label for="txtDOB">Date of birth</label></td>
-            <td><input class="form-control" type="text" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required /></td>
-        </tr>
-        <tr>
-            <td><label for="txtDeathSumInsured">Death - Sum Insured</label></td>
-            <td><input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" placeholder="Provide death sum insured" required /></td>
-        </tr>
-        <tr>
-            <td><label for="ddlOccupation">Occupation</label></td>
-            <td><select class="form-control triggerCalculation" id="ddlOccupation"></select></td>
-        </tr>
-        <tr>
-            <td>Monthly premium</td>
-            <td><span id="txtPremium">-</span></td>
-        </tr>
-    </table>
+    <h1 class="display-4">Insurance Premium Calculator Form</h1>
+    <form id="contact-form">
+        <table border="1" width="70%">
+            <tr>
+                <td><label for="txtName">Name</label></td>
+                <td><input class="form-control" type="text" id="txtName" placeholder="Provide your name" required /></td>
+            </tr>
+            <tr>
+                <td><label for="txtDOB">Date of birth</label></td>
+                <td><input class="form-control" type="date" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required /></td>
+            </tr>
+            <tr>
+                <td><label for="txtAge">Age</label></td>
+                <td><input class="form-control triggerCalculation" readonly type="number" id="txtAge" min="1" max="150" placeholder="Provide your age" required /></td>
+            </tr>
+            <tr>
+                <td><label for="txtDeathSumInsured">Death - Sum Insured</label></td>
+                <td><input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" min="1" placeholder="Provide death sum insured" required /></td>
+            </tr>
+            <tr>
+                <td><label for="ddlOccupation">Occupation</label></td>
+                <td><select class="form-control triggerCalculation" id="ddlOccupation"></select></td>
+            </tr>
+            <tr>
+                <td>Monthly premium</td>
+                <td><span id="txtPremium">-</span></td>
+            </tr>
+        </table>
+    </form>
 </div>
+
+@section Scripts{ 
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml"); }
+}

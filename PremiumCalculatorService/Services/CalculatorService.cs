@@ -24,7 +24,7 @@ namespace PremiumCalculator.Service.Services
 
             if (occupation != null && occupation.RatingDetail != null)
             {
-                premium = Math.Round(calculatorParameter.DeathSumInsured * occupation.RatingDetail.Factor * calculatorParameter.Age / 1000, 4);
+                premium = Math.Round(calculatorParameter.DeathSumInsured * occupation.RatingDetail.Factor * calculatorParameter.Age / 1000, 2);
             }
             else
             {
