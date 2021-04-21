@@ -35,7 +35,8 @@ namespace PremiumCalculator.Service.Services
             // If Occupation is null then
             if (occupations == null)
             {
-                // Log -> Constants.OCCUPATION_NULL_ERROR;                
+                // Log -> Constants.OCCUPATION_NULL_ERROR;
+                throw new Exception(Constants.OCCUPATION_NULL_ERROR);
             }
 
             return occupations;
@@ -46,12 +47,11 @@ namespace PremiumCalculator.Service.Services
 
             if(id <= 0)
             {
-                // Log -> Constants.OCCUPATION_NULL_ERROR;               
+                // Log -> Constants.OCCUPATION_ID_NULL_ERROR;               
                 throw new Exception(Constants.OCCUPATION_ID_NULL_ERROR);
             }
-
-            // ToDo:: _occupations will be fectched from datasource using EF
-            occupation = _occupations.FirstOrDefault(o => o.ID == id);
+            
+            occupation = GetAllOccupations().FirstOrDefault(o => o.ID == id);
 
             // If Occupation or RatingDetails is null then
             if (occupation == null)
