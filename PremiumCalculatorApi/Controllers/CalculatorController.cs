@@ -37,7 +37,7 @@ namespace PremiumCalculator.Api.Controllers
 
             if (calculatorParameter == null)
             {
-                return BadRequest();
+                return BadRequest(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
             }
 
             try
