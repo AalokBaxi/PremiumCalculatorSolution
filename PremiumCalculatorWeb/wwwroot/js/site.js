@@ -32,24 +32,41 @@ $(document).ready(function () {
             age--;
         }
 
-        // Set age and trigger change event
-        $("#txtAge").val(age).trigger("change");
+        // Dob range validation: between 1 and 150
+        if (age <= 0 || age > 150) {
+            $(this).addClass("is-invalid");
+            $("#lblDOBError").removeClass("text-hide").addClass("invalid-feedback");
+            $("#txtAge").val(age);
+            resetPremium();
+        }
+        else {
+            $(this).removeClass("is-invalid");
+            $("#lblDOBError").addClass("text-hide").removeClass("invalid-feedback");
 
+            // Set age and trigger change event
+            $("#txtAge").val(age).trigger("change");
+
+        }        
     });
 
     // Calculate the premium on age/occupation/deathSumInsured change
     $(".triggerCalculation").change(function () {
+        var name = $("#txtName").val();
         var age = $("#txtAge").val();
         var occupationID = $("#ddlOccupation").find(":selected").val();
         var deathSumInsured = $("#txtDeathSumInsured").val();
         
-        if (age && age > 0 && occupationID && occupationID > 0 && deathSumInsured && deathSumInsured > 0) {
+        if (name && age && age > 0 && occupationID && occupationID > 0 && deathSumInsured && deathSumInsured > 0) {
             calculatePremium();
         }
         else {
-            $("#txtPremium").html("-");
+            resetPremium();
         }        
     });
+
+    var resetPremium = function () {
+        $("#txtPremium").html("-");
+    };
 
     // Calculate actual premium
     var calculatePremium = function () {
