@@ -10,7 +10,13 @@ $(document).ready(function () {
     // Load occupations
     $.ajax({
         type: "GET",
-        url: _apiPath + "/Occupation",               
+        url: _apiPath + "/Occupation",  
+        beforeSend: function () {
+            $("#spOccupationLoading").addClass("spinner-border");
+        },
+        complete: function () {
+            $("#spOccupationLoading").removeClass("spinner-border");
+        },
         success: function (data) {
             var s = '<option value="-1">Please select a occupation</option>';
             for (var i = 0; i < data.length; i++) {
@@ -51,12 +57,11 @@ $(document).ready(function () {
 
     // Calculate the premium on age/occupation/deathSumInsured change
     $(".triggerCalculation").change(function () {
-        var name = $("#txtName").val();
         var age = $("#txtAge").val();
         var occupationID = $("#ddlOccupation").find(":selected").val();
         var deathSumInsured = $("#txtDeathSumInsured").val();
         
-        if (name && age && age > 0 && occupationID && occupationID > 0 && deathSumInsured && deathSumInsured > 0) {
+        if (age && age > 0 && occupationID && occupationID > 0 && deathSumInsured && deathSumInsured > 0) {
             calculatePremium();
         }
         else {
@@ -64,7 +69,9 @@ $(document).ready(function () {
         }        
     });
 
+    // Show - in premium label
     var resetPremium = function () {
+        $("#txtPremium").empty();
         $("#txtPremium").html("-");
     };
 
@@ -84,10 +91,16 @@ $(document).ready(function () {
             accepts: "application/json",
             contentType: "application/json",
             data: JSON.stringify(calculatorParamaters),
+            beforeSend: function () {
+                $("#txtPremium").empty();
+                $("#txtPremium").addClass("spinner-border");
+            },            
             success: function (data) {                
+                $("#txtPremium").removeClass("spinner-border");
                 $("#txtPremium").html("$" + data).append("<small class='text - muted'> / mo</small>");
             },
             error: function () {
+                $("#txtPremium").removeClass("spinner-border");
                 $("#txtPremium").html(": Some error, please try again later.");
             }
         });
