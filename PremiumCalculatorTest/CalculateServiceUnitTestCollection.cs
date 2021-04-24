@@ -1,9 +1,9 @@
 using Moq;
 using NUnit.Framework;
-using PremiumCalculator.Core.Models;
-using PremiumCalculator.Service.Services;
-using System;
 using PremiumCalculator.Core.Common;
+using PremiumCalculator.Core.Models;
+using PremiumCalculator.Service.Extensions;
+using PremiumCalculator.Service.Services;
 
 namespace PremiumCalculator.Test
 {
@@ -22,7 +22,7 @@ namespace PremiumCalculator.Test
         [Test]        
         public void CalculateMonthlyPremium_Throw_When_ParameterIsNull()
         {
-            var ex = Assert.Throws<Exception>(() => _calculatorService.CalculateMonthlyPremium(null));
+            var ex = Assert.Throws<BusinessException>(() => _calculatorService.CalculateMonthlyPremium(null));
             
             Assert.IsTrue(Constants.CALCULATOR_PARAMETER_NULL_ERROR == ex.Message, "CalculateMonthlyPremium_Throw_When_ParameterIsNull success");
         }
@@ -32,7 +32,7 @@ namespace PremiumCalculator.Test
         {            
             CalculatorParameter calculatorParameter = new CalculatorParameter { DeathSumInsured = 0 };
 
-            var ex = Assert.Throws<Exception>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
+            var ex = Assert.Throws<BusinessException>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
 
             Assert.IsTrue(Constants.CALCULATOR_PARAMETER_DEATH_SUM_INSURED_NULL_ERROR == ex.Message, "CalculateMonthlyPremium_Throw_When_DeathSumInsured_Is_0 success");
         }
@@ -42,7 +42,7 @@ namespace PremiumCalculator.Test
         {            
             CalculatorParameter calculatorParameter = new CalculatorParameter { Age = 0, DeathSumInsured = 10000 };
 
-            var ex = Assert.Throws<Exception>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
+            var ex = Assert.Throws<BusinessException>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
 
             Assert.IsTrue(Constants.CALCULATOR_PARAMETER_AGE_NULL_ERROR == ex.Message, "CalculateMonthlyPremium_Throw_When_Age_Is_0 success");
         }
@@ -52,7 +52,7 @@ namespace PremiumCalculator.Test
         {           
             CalculatorParameter calculatorParameter = new CalculatorParameter { Age = 151, DeathSumInsured = 10000 };
 
-            var ex = Assert.Throws<Exception>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
+            var ex = Assert.Throws<BusinessException>(() => _calculatorService.CalculateMonthlyPremium(calculatorParameter));
 
             Assert.IsTrue(Constants.CALCULATOR_PARAMETER_AGE_RANGE_ERROR == ex.Message, "CalculateMonthlyPremium_Throw_When_Age_Is_Greater_Than_150 success");
         }        

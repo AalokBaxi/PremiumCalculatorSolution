@@ -1,5 +1,6 @@
 ﻿using PremiumCalculator.Core.Common;
 using PremiumCalculator.Core.Models;
+using PremiumCalculator.Service.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,43 +27,43 @@ namespace PremiumCalculator.Service.Services
             //
         }
         public List<Occupation> GetAllOccupations()
-        {            
-            List<Occupation> occupations = null;
+        {
 
-            // ToDo:: _occupations will be fectched from datasource using EF
-            occupations = _occupations;
-
+            #region System validation
             // If Occupation is null then
-            if (occupations == null)
+            if (_occupations == null)
             {
                 // Log -> Constants.OCCUPATION_NULL_ERROR;
                 throw new Exception(Constants.OCCUPATION_NULL_ERROR);
-            }
+            } 
+            #endregion
 
-            return occupations;
+            return _occupations;
         }
         public Occupation GetOccupationByID(int id)
         {
             Occupation occupation = null;
 
-            if(id <= 0)
+            #region Business validation
+            if (id <= 0)
             {
                 // Log -> Constants.OCCUPATION_ID_NULL_ERROR;               
-                throw new Exception(Constants.OCCUPATION_ID_NULL_ERROR);
-            }
-            
+                throw new BusinessException(Constants.OCCUPATION_ID_NULL_ERROR);
+            } 
+            #endregion
+
             occupation = GetAllOccupations().FirstOrDefault(o => o.ID == id);
 
             // If Occupation or RatingDetails is null then
             if (occupation == null)
             {
                 // Log -> Constants.OCCUPATION_NOT_FOUND;               
-                throw new Exception(Constants.OCCUPATION_NOT_FOUND);
+                throw new BusinessException(Constants.OCCUPATION_NOT_FOUND);
             }
             else if (occupation.RatingDetail == null)
             {
                 // Log -> Constants.RATING_NOT_FOUND;
-                throw new Exception(Constants.RATING_NOT_FOUND);
+                throw new BusinessException(Constants.RATING_NOT_FOUND);
             }
             else
             {

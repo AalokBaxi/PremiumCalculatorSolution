@@ -32,28 +32,8 @@ namespace PremiumCalculator.Api.Controllers
         /// <returns>Monthly premium</returns>
         [HttpPost]
         public ActionResult<decimal> Calculate(CalculatorParameter calculatorParameter)
-        {
-            decimal? monthlyPremium = null;
-
-            if (calculatorParameter == null)
-            {
-                return BadRequest(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
-            }
-
-            try
-            {
-                monthlyPremium = _calculatorService.CalculateMonthlyPremium(calculatorParameter);
-
-                if (!monthlyPremium.HasValue)
-                {
-                    return BadRequest(Constants.PREMIUM_NULL);
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+        {            
+            decimal? monthlyPremium = _calculatorService.CalculateMonthlyPremium(calculatorParameter);
             return Ok(monthlyPremium);
         }        
     }

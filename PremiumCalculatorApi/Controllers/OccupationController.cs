@@ -32,13 +32,7 @@ namespace PremiumCalculator.Api.Controllers
         [HttpGet]        
         public ActionResult<List<Occupation>> GetOccupations()
         {
-            List<Occupation> occupations = _occupationService.GetAllOccupations();
-
-            if(occupations == null)
-            {
-                return NotFound(Constants.OCCUPATION_NULL_ERROR);
-            }
-
+            List<Occupation> occupations = _occupationService.GetAllOccupations();           
             return Ok(occupations);
         }
 
@@ -52,17 +46,6 @@ namespace PremiumCalculator.Api.Controllers
         public ActionResult<Occupation> GetOccupation(int id)
         {
             Occupation occupation = _occupationService.GetOccupationByID(id);
-
-            if (occupation == null)
-            {
-                return NotFound(Constants.OCCUPATION_NULL_ERROR);
-            }
-
-            if (occupation.RatingDetail == null)
-            {
-                return NotFound(Constants.RATING_NULL_ERROR);
-            }
-
             return Ok(occupation);
         }
     }

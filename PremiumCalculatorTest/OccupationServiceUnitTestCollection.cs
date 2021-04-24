@@ -1,13 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
 using PremiumCalculator.Core.Common;
-using PremiumCalculator.Core.Models;
+using PremiumCalculator.Service.Extensions;
 using PremiumCalculator.Service.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PremiumCalculator.Test
 {
@@ -26,7 +22,7 @@ namespace PremiumCalculator.Test
         [Test]
         public void GetOccupationByID_Throw_When_ID_Is_0()
         {
-            var ex = Assert.Throws<Exception>(() => _occupationService.GetOccupationByID(0));
+            var ex = Assert.Throws<BusinessException>(() => _occupationService.GetOccupationByID(0));
 
             Assert.IsTrue(Constants.OCCUPATION_ID_NULL_ERROR == ex.Message, "GetOccupationByID_Throw_When_ID_Is_0 success");
         }

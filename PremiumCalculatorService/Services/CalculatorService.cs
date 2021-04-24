@@ -1,5 +1,6 @@
 ﻿using PremiumCalculator.Core.Common;
 using PremiumCalculator.Core.Models;
+using PremiumCalculator.Service.Extensions;
 using System;
 
 namespace PremiumCalculator.Service.Services
@@ -15,37 +16,37 @@ namespace PremiumCalculator.Service.Services
         {
             decimal? premium = null;
 
+            #region Business validations
             if (calculatorParameter == null)
             {
-                throw new Exception(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
+                throw new BusinessException(Constants.CALCULATOR_PARAMETER_NULL_ERROR);
             }
 
-            if (calculatorParameter.DeathSumInsured <=0)
+            if (calculatorParameter.DeathSumInsured <= 0)
             {
-                throw new Exception(Constants.CALCULATOR_PARAMETER_DEATH_SUM_INSURED_NULL_ERROR);
+                throw new BusinessException(Constants.CALCULATOR_PARAMETER_DEATH_SUM_INSURED_NULL_ERROR);
             }
 
-            if (calculatorParameter.Age <=0)
+            if (calculatorParameter.Age <= 0)
             {
-                throw new Exception(Constants.CALCULATOR_PARAMETER_AGE_NULL_ERROR);
+                throw new BusinessException(Constants.CALCULATOR_PARAMETER_AGE_NULL_ERROR);
             }
 
             if (calculatorParameter.Age > 150)
             {
-                throw new Exception(Constants.CALCULATOR_PARAMETER_AGE_RANGE_ERROR);
+                throw new BusinessException(Constants.CALCULATOR_PARAMETER_AGE_RANGE_ERROR);
             }
+            #endregion
 
-
+            // Get occupation details
             Occupation occupation = _occupationService.GetOccupationByID(calculatorParameter.OccupationID);
 
-            if (occupation != null && occupation.RatingDetail != null)
+            premium = Math.Round(calculatorParameter.DeathSumInsured * occupation.RatingDetail.Factor * calculatorParameter.Age / 1000, 2);
+
+            // If unable to calculate premium for given parameters
+            if (!premium.HasValue)
             {
-                premium = Math.Round(calculatorParameter.DeathSumInsured * occupation.RatingDetail.Factor * calculatorParameter.Age / 1000, 2);
-            }
-            else
-            {
-                // Log -> Constants.OCCUPATION_NOT_FOUND;
-                // Log -> Constants.RATING_NULL_ERROR;
+                throw new Exception(Constants.PREMIUM_NULL);
             }
 
             return premium;
