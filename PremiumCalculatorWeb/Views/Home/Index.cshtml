@@ -14,20 +14,20 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-5">
-                    <label for="txtDOB">Date of birth</label>   
+                    <label for="txtDOB">Date of birth</label>
                     <input class="form-control" type="date" id="txtDOB" placeholder="Provide your date of birth in dd/MM/yyyy format" required />
-                    <small id="lblDOBError" class="text-hide">Age must be between 1yr to 150yr, please try again</small>
+                    <small aria-hidden="true" id="lblDOBError" class="text-hide">Age must be between 1yr to 150yr, please try again</small>
                 </div>
                 <div class="form-group col-md-5">
                     <label for="txtAge">Age</label>
-                    <fieldset disabled><input class="form-control triggerCalculation" type="number" id="txtAge" min="1" max="150" placeholder="Provide your age" required /></fieldset>
+                    <input aria-readonly="true" class="form-control triggerCalculation" type="number" id="txtAge" min="1" max="150" placeholder="Provide your age" required disabled />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label for="txtDeathSumInsured">Death - Sum Insured</label>
-                    <input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" min="1" 
-                           oninput="validity.valid||(value=value.replace(/\D+/g, ''));" 
+                    <input class="form-control triggerCalculation" type="number" id="txtDeathSumInsured" min="1"                           
+                           oninput="validity.valid||(value=value.replace(/\D+/g, ''));"
                            placeholder="Provide death sum insured" required />
                 </div>
                 <div class="form-group col-md-5">
@@ -38,8 +38,7 @@
             </div>
             <div class="form-row">
                 <div class="form-group col-md-10 h3">
-                    <label for="txtPremium">Premium Calculation</label>
-                    <span id="txtPremium">-</span>
+                    Premium Calculation <span id="txtPremium">-</span>
                 </div>
             </div>
         </form>
